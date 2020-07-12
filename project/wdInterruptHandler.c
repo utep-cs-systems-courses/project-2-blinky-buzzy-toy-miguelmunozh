@@ -7,9 +7,6 @@
 void
 __interrupt_vec(WDT_VECTOR) WDT(){	/* 250 interrupts/sec */
   static char blink_count = 0;
-  static char another_count =0;
-
-  switch_interrupt_handler();          /*single handler for all the switches*/
 
   //handle what to do when a button is pressed  
   switch(state){
@@ -20,10 +17,10 @@ __interrupt_vec(WDT_VECTOR) WDT(){	/* 250 interrupts/sec */
       }
      break; 
   case 2:
-     if (++another_count ==250) {
+     if (++blink_count ==250) {
 	buzzer_set_period(0);
 	state_advance_binary();
-	  another_count = 0;
+	  blink_count = 0;
 	}
      break; 
   case 3:
@@ -33,7 +30,7 @@ __interrupt_vec(WDT_VECTOR) WDT(){	/* 250 interrupts/sec */
       }
      break;
   case 4:
-      if(++blink_count == 40){
+      if(++blink_count == 5){
 	buzzer_set_period(0); //stop the beep
         state_advance();
         blink_count = 0;

@@ -11,7 +11,7 @@ void led_init()
 {
   P1DIR |= LEDS;		// bits attached to leds are output
   led_changed = 1;
-  //  led_update();         the call was here since leed init is called in main, when it starts but                            now it is changed to when i press a button
+  led_update();
 }
 
 void led_update()

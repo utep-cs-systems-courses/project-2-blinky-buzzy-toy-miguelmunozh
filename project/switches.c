@@ -4,10 +4,7 @@
 #include "buzzer.h"
 
 //#include "buzzer.h"
-char switch_state_down,
-     switch_state_down2,
-     switch_state_down3,
-     switch_state_down4, switch_state_changed; /* effectively boolean */
+char switch_state_down,switch_state_down2,switch_state_down3, switch_state_down4, switch_state_changed; /* effectively boolean */
 char state = 0;
 static char 
 switch_update_interrupt_sense()
@@ -35,7 +32,7 @@ switch_interrupt_handler()
   char p1val = switch_update_interrupt_sense();
 
   
-  /*handle all 4 buttons, if the button is pushed switch_statedownN = 1 otherwise is 0*/
+  /*handle all 4 buttons, if the button is push switch_statedownN = 1 otherwise is 0*/
   switch_state_down =  (p1val & BIT0) ? 0 : 1; /* 0 when SW1 is up */
   switch_state_down2 = (p1val & BIT1) ? 0 : 1;
   switch_state_down3 = (p1val & BIT2) ? 0 : 1;
@@ -43,7 +40,6 @@ switch_interrupt_handler()
 
   
   switch_state_changed = 1;
-  
   //  led_update();
   if(switch_state_down){
     state = 1;
