@@ -8,7 +8,7 @@ void
 __interrupt_vec(WDT_VECTOR) WDT(){	/* 250 interrupts/sec */
   static char blink_count = 0;
 
-  //handle what to do when a button is pressed  
+  /*handle what to do when a button is pressed*/  
   switch(state){
   case 1:
      if(++blink_count == 50){
